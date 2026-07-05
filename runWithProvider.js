@@ -4,6 +4,11 @@ const { existsSync } = require('fs');
 
 dotenv.config();
 
+if (process.env.DATABASE_ENABLED === 'false') {
+  console.log('[Migration] DATABASE_ENABLED=false — pulando migração.');
+  process.exit(0);
+}
+
 const { DATABASE_PROVIDER } = process.env;
 const databaseProviderDefault = DATABASE_PROVIDER ?? 'postgresql';
 
