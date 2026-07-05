@@ -1,6 +1,12 @@
 #!/bin/bash
 
+if [ "${SKIP_DB_MIGRATION:-false}" = "true" ]; then
+    echo "Skipping migrations (SKIP_DB_MIGRATION=true)"
+    exit 0
+fi
+
 source ./Docker/scripts/env_functions.sh
+
 
 if [ "$DOCKER_ENV" != "true" ]; then
     export_env_vars
