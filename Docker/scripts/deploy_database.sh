@@ -2,9 +2,8 @@
 
 if [ "${SKIP_DB_MIGRATION:-false}" = "true" ]; then
     echo "Skipping migrations (SKIP_DB_MIGRATION=true)"
-    exit 0
+    return 0 2>/dev/null || exit 0
 fi
-
 source ./Docker/scripts/env_functions.sh
 
 
